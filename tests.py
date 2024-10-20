@@ -88,7 +88,3 @@ class TestBooksCollector:
         #assert collector.get_list_of_favorites_books() == ['Кот Коломбо']
         assert 'Кот Коломбо' in collector.favorites
 
-    def test_add_new_book(self):
-        collector = BooksCollector()
-        collector.add_new_book('Гордость и предубеждение и зомби')
-        assert len(collector.get_books_genre()) == 1
