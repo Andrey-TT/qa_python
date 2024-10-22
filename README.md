@@ -6,9 +6,9 @@
 2. test_repeated_add_new_book - проверка невозможности повторного добавления книги в список
 3. test_add_new_book_no_genre - проверка, что у добавленой книги нет жанра
 4. test_add_new_book_check_character_count - позитивная проверка длины названия добавляемой книги
-5. test_set_book_genre - проверка присвоения жанра книге из списка
-6. test_get_book_genre_name - проверка получения жанра книги по её названию
-7. get_books_with_specific_genre - проверка получения названия книг по жанрам
+5. test_not_add_new_book_check_character_count - негативная проверка длины названия добавляемой книги
+6. test_set_book_genre - проверка присвоения жанра книге из списка
+7. test_get_book_genre_name - проверка получения жанра книги по её названию
 8. test_get_books_with_horrors_genre - проверка получения названия книг по жанру "Ужасы"
 9. test_get_books_with_cartoons_genre - проверка получения названия книг по жанру "Мультфильмы"
 10. test_get_books_genre_one_book - проверка получения списка книг с названием и жанром (в списке одна книга)
