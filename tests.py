@@ -23,7 +23,9 @@ class TestBooksCollector:
         assert 0 < len(name) < 41
 
     def test_set_book_genre (self, collector, books_genre, book_genre):
-        assert collector.books_genre['Кот зомби'] == 'Ужасы'
+        collector.add_new_book('Индиана кот')
+        collector.set_book_genre('Индиана кот', 'Фантастика')
+        assert collector.books_genre['Индиана кот'] == 'Фантастика'
 
     def test_get_book_genre_name (self, collector, books_genre, book_genre):
         assert collector.books_genre.get('Кот Леопольд') == 'Мультфильмы'
@@ -31,10 +33,7 @@ class TestBooksCollector:
     @pytest.mark.parametrize('name, genre', [
                                             ['Кот колдун', 'Фантастика'],
                                             ['Кот зомби', 'Ужасы'],
-                                            ['Кот Коломбо', 'Детективы'],
                                             ['Кот Леопольд', 'Мультфильмы'],
-                                            ['Кот играет на баяне', 'Комедии'],
-                                            ['Убить всех котов', 'Ужасы']
                                             ])
 
     def get_books_with_specific_genre(self, collector, name, genre):
@@ -43,7 +42,7 @@ class TestBooksCollector:
         assert collector.get_books_with_specific_genre(genre) == [name]
 
     def test_get_books_with_horrors_genre(self, collector, books_genre, book_genre):
-        assert collector.get_books_with_specific_genre('Ужасы') == ['Кот зомби', 'Убить всех котов']
+        assert collector.get_books_with_specific_genre('Ужасы') == ['Кот зомби']
 
     def test_get_books_with_cartoons_genre(self, collector, books_genre, book_genre):
         assert collector.get_books_with_specific_genre('Мультфильмы') == ['Кот Леопольд']
@@ -54,18 +53,15 @@ class TestBooksCollector:
         assert collector.get_books_genre() == {'Кот колдун': 'Фантастика'}
 
     def test_get_books_genre_many_books(self, collector, books_genre, book_genre):
-        assert collector.get_books_genre() == {'Кот Коломбо': 'Детективы',
-                                            'Кот Леопольд': 'Мультфильмы',
+        assert collector.get_books_genre() == {'Кот Леопольд': 'Мультфильмы',
                                             'Кот зомби': 'Ужасы',
-                                            'Кот играет на баяне': 'Комедии',
-                                            'Кот колдун': 'Фантастика',
-                                            'Убить всех котов': 'Ужасы'}
+                                            'Кот колдун': 'Фантастика'}
 
     def test_get_books_for_children(self, collector, books_genre, book_genre):
-        assert collector.get_books_for_children() == ['Кот колдун', 'Кот Леопольд', 'Кот играет на баяне']
+        assert collector.get_books_for_children() == ['Кот колдун', 'Кот Леопольд']
 
     def test_age_rated_books_not_get_books_for_children(self, collector, books_genre, book_genre):
-        assert not collector.get_books_for_children() == ['Кот Коломбо', 'Кот зомби', 'Убить всех котов']
+        assert not collector.get_books_for_children() == ['Кот зомби']
 
     def test_add_book_in_favorites(self, collector, books_genre):
         collector.add_book_in_favorites('Кот колдун')
@@ -83,8 +79,8 @@ class TestBooksCollector:
 
     def test_get_list_of_favorites_books(self, collector, books_genre):
         collector.add_book_in_favorites('Кот колдун')
-        collector.add_book_in_favorites('Кот Коломбо')
+        collector.add_book_in_favorites('Кот зомби')
         collector.delete_book_from_favorites('Кот колдун')
         #assert collector.get_list_of_favorites_books() == ['Кот Коломбо']
-        assert 'Кот Коломбо' in collector.favorites
+        assert 'Кот зомби' in collector.favorites
 
