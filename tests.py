@@ -17,14 +17,12 @@ class TestBooksCollector:
         assert collector.books_genre['Гордость и предубеждение и зомби'] == ''
 
     @pytest.mark.parametrize('name', ['К', 'Кот', 'Кот гуляет по двору', 'Что делать, если ваш кот хочет вас убить', 'Что делать, если котя зомби хочет убить?'])
-    def test_add_new_book_check_character_count(self, name):
-        collector = BooksCollector()
+    def test_add_new_book_check_character_count(self, collector, name):
         collector.add_new_book(name)
         assert list(collector.books_genre.keys()) == [name]
 
     @pytest.mark.parametrize('name', ['', 'Что делать, если кот зомби хочет убить Ва', 'Что делать, если кот зомби хочет убить Вас?'])
-    def test_not_add_new_book_check_character_count(self, name):
-        collector = BooksCollector()
+    def test_not_add_new_book_check_character_count(self, collector, name):
         collector.add_new_book(name)
         assert not list(collector.books_genre.keys()) == [name]
 
