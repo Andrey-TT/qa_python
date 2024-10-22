@@ -30,17 +30,6 @@ class TestBooksCollector:
     def test_get_book_genre_name (self, collector, books_genre, book_genre):
         assert collector.books_genre.get('Кот Леопольд') == 'Мультфильмы'
 
-    @pytest.mark.parametrize('name, genre', [
-                                            ['Кот колдун', 'Фантастика'],
-                                            ['Кот зомби', 'Ужасы'],
-                                            ['Кот Леопольд', 'Мультфильмы'],
-                                            ])
-
-    def get_books_with_specific_genre(self, collector, name, genre):
-        collector.add_new_book(name)
-        collector.set_book_genre(name, genre)
-        assert collector.get_books_with_specific_genre(genre) == [name]
-
     def test_get_books_with_horrors_genre(self, collector, books_genre, book_genre):
         assert collector.get_books_with_specific_genre('Ужасы') == ['Кот зомби']
 
